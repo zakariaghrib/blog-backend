@@ -30,7 +30,12 @@ public class SecurityConfig {
                 // 1. Configuration CORS : Autoriser React à discuter avec Spring Boot
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:3000"));
+                    // 👇 L'URL Vercel est ajoutée ici
+                    config.setAllowedOrigins(Arrays.asList(
+                            "http://localhost:5173",
+                            "http://localhost:3000",
+                            "https://blog-frontend-seven-xi.vercel.app"
+                    ));
                     config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
                     return config;
